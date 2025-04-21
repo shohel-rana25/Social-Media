@@ -1,0 +1,31 @@
+{% for post in myposts %}
+<div class="post-card">
+  <h4>{{ post.profile.user.username }}</h4>
+  <img src="{{ post.image.url }}" class="post-image">
+  <p>{{ post.caption }}</p>
+  <p><small>{{ post.created_at }}</small></p>
+
+  <!-- Like Section -->
+  <form action="{% url 'like_post' post.id %}" method="post">
+    {% csrf_token %}
+    <button type="submit">
+      {% if user in post.likes.all %}
+        ❤️ Unlike
+      {% else %}
+        🤍 Like
+      {% endif %}
+    </button> {{ post.total_likes }} likes
+  </form>
+
+  <!-- Comment Section -->
+  <form action="{% url 'add_comment' post.id %}" method="post">
+    {% csrf_token %}
+    <input type="text" name="comment" placeholder="Add a comment..." required>
+    <button type="submit">Post</button>
+  </form>
+
+  {% for comment in post.comments.all %}
+    <p><strong>{{ comment.user.username }}</strong>: {{ comment.content }}</p>
+  {% endfor %}
+</div>
+{% endfor %}

@@ -1,0 +1,117 @@
+/* Overall Profile Container */
+.profile-container {
+    width: 80%;
+    margin: 0 auto;
+    background-color: #fff;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    padding: 20px;
+    font-family: Arial, sans-serif;
+  }
+  
+  /* Profile Header */
+  .profile-header {
+    text-align: center;
+    margin-bottom: 20px;
+  }
+  
+  .profile-header h2 {
+    font-size: 28px;
+    font-weight: bold;
+    color: #3b5998;
+  }
+  
+  /* Profile Picture Section */
+  .profile-picture-section {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    margin-bottom: 30px;
+  }
+  
+  .profile-picture {
+    width: 150px;
+    height: 150px;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 3px solid #ddd;
+    margin-bottom: 10px;
+  }
+  
+  .upload-button {
+    background-color: #3b5998;
+    color: white;
+    border: none;
+    padding: 8px 15px;
+    font-size: 14px;
+    cursor: pointer;
+    border-radius: 5px;
+  }
+  
+  .upload-button:hover {
+    background-color: #4c70ba;
+  }
+  
+  /* Bio Section */
+  .bio-section {
+    text-align: center;
+    font-size: 16px;
+    color: #555;
+    margin-bottom: 30px;
+  }
+  
+  .bio-section strong {
+    color: #333;
+  }
+  
+  /* Posts Section */
+  .posts-section {
+    margin-top: 20px;
+  }
+  
+  .posts-section h3 {
+    font-size: 24px;
+    color: #3b5998;
+    margin-bottom: 20px;
+  }
+  
+  /* Post Cards */
+  .post-card {
+    background-color: #f5f6f7;
+    padding: 15px;
+    border-radius: 10px;
+    margin-bottom: 20px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  }
+  
+  .post-card h4 {
+    font-size: 20px;
+    font-weight: bold;
+    color: #333;
+  }
+  
+  .post-card .post-image {
+    width: 100%;
+    max-width: 500px;
+    height: auto;
+    border-radius: 8px;
+    margin-top: 15px;
+  }
+  
+  .post-card p {
+    font-size: 14px;
+    color: #666;
+  }
+  
+  .post-card small {
+    color: #aaa;
+  }
+  
+  /* Empty Post Message */
+  .posts-section p {
+    color: #777;
+    font-style: italic;
+    text-align: center;
+  }
+  

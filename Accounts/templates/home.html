@@ -1,0 +1,20 @@
+{% extends 'base.html' %}
+
+{% block title %}Home | My Social Media{% endblock %}
+
+{% block content %}
+{% for post in posts %}
+<div style="border:1px solid #ccc; padding:10px; margin:10px;">
+  <p><strong>{{ post.user.username }}</strong></p>
+  <img src="{{ post.image.url }}" style="width:300px;"><br>
+  <p>{{ post.caption }}</p>
+  <p><small>{{ post.created_at }}</small></p>
+
+  <form method="post" action="{% url 'like_post' post.id %}">
+    {% csrf_token %}
+    <button type="submit">Like</button>
+  </form>
+</div>
+{% endfor %}
+
+{% endblock %}

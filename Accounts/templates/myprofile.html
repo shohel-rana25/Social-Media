@@ -1,0 +1,80 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+
+<div class="profile-container">
+  <div class="profile-header">
+    <h2>{{ profile.user.username }}'s Profile</h2>
+  </div>
+
+  <div class="profile-body">
+    <!-- Profile Picture Section -->
+    <div class="profile-picture-section">
+      {% if profile.profile_picture %}
+        <img src="{{ profile.profile_picture.url }}" alt="Profile Picture" class="profile-picture">
+         {% csrf_token %}
+         {{ form.as_p }}
+
+         <a href="{% url 'change_profile' %}" class="upload-button">Change Profile Picture</a>
+      {% else %}
+        <p>No Profile Picture Yet</p>
+        <form method="post" enctype="multipart/form-data" class="profile-picture-form">
+          {% csrf_token %}
+          {{ form.as_p }}
+          <button type="submit" class="upload-button">Upload/Change Picture</button>
+        </form>
+
+      {% endif %}
+      
+    </div>
+
+    <!-- Bio Section -->
+    <div class="bio-section">
+      <p><strong>Bio:</strong> {{ profile.caption }}</p>
+    </div>
+
+    <hr>
+
+    <!-- Posts Section -->
+    <div class="posts-section">
+      <h3>My Posts</h3>
+      {% comment %} {% for post in myposts %}
+        <div class="post-card">
+          <h4>{{ post.profile.user.username }}</h4>
+          <img src="{{ post.image.url }}" class="post-image">
+          <p>{{ post.caption }}</p>
+          <p><small>{{ post.created_at }}</small></p>
+        </div>
+      {% empty %}
+        <p>No posts yet.</p>
+      {% endfor %} {% endcomment %}
+
+            
+      {% for post in myposts %}
+      <div style="border:1px solid #ccc; padding:10px; margin:10px;">
+        <h4>{{ post.profile.user.username }}</h4>
+        <img src="{{ post.image.url }}" style="width:300px;"><br>
+        <p>{{ post.caption }}</p>
+
+        <form action="{% url 'like_post' post.id %}" method="POST" class="d-flex align-items-center gap-2">
+            {% csrf_token %}
+            <button type="submit" class="btn {% if user in post.likes.all %}btn-danger{% else %}btn-success{% endif %}">
+              {% if user in post.likes.all %}
+                  Unlike
+              {% else %}
+                  👍 Like
+              {% endif %}
+          </button>
+            <span>👍 {{ post.total_likes }}</span>
+        </form>
+        <p><small>{{ post.created_at }}</small></p>
+      </div>
+      {% empty %}
+      <p>No posts yet.</p>
+      {% endfor %}
+
+    </div>
+  </div>
+</div>
+{% endblock %}
